@@ -16,8 +16,11 @@ app.use(cors());
 // Middleware to parse JSON body for HTTP POST requests
 app.use(express.json());
 
+// app.get("/", (req, res) => {
+//   res.sendFile(__dirname + "/read.html");
+// });
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/read.html");
+  res.send("TwitterPak WebSocket server is running");
 });
 
 // Function to send a message to a specific client by incomingid
@@ -128,7 +131,7 @@ function broadcastLiveStream(liveData) {
   });
 }
 
-// Start the server
-server.listen(3000, () => {
-  console.log("WebSocket server is listening on port 3000");
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`WebSocket server is listening on port ${PORT}`);
 });
